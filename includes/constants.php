@@ -1,0 +1,3 @@
+<?php
+//COSI' MI SALVO LA PAGGINA INIZIALE SENZA DOVER SCRIVERE SEMPRE L'INDITIZZO(http://localhost/S5-L2/)
+define("SITE_URL", "http://localhost/S5-L2");
