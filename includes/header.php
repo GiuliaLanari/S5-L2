@@ -1,24 +1,12 @@
 <?php
 
 include_once __DIR__ . "/constants.php";
+include_once __DIR__ . '/translations.php';
+include_once __DIR__ . "/../db.php";
 
-//cambiare tema alla pagina collegato al bottone
-$cookie_expiration= time() + 60*60*24*365*5;//con questo stabilisco la durata del mio cookie time()-> corrisponde con il tempo attuale, secondi/minuti/ore/giorni/anni in questo caso durerà 5 anni
 
-//con questo if vedo se il tema è cambiato collegamento al bottone per cambiare
-if(isset($_GET["changetheme"])){
-//se non esite il cookie di default prende light (generando un cookie)
-    if(!isset($_COOKIE["theme"])){
-        setcookie("theme", "light", $cookie_expiration);
-    } else{
-        //in caso contrario già esiste un cookie vedo che tipo è in modo da settare la paggina con il theme giusto già scelto dal cliente
-        setcookie("theme", $_COOKIE["theme"]=== "light"? "dark": "light", $cookie_expiration);
-    }
-    //con questo mi rindirizzo alla pagina stessa dove ho fatto il cambiamento
-    header("Location: $_SERVER[HTTP_REFERER]");
-    //così chiudo l'azione
-    exit;
-}
+
+
 
 //PER DETERMINARE IL TEMA ESATTO DEL COOKIE
 if (!isset($_COOKIE['theme'])) {
@@ -28,9 +16,17 @@ if (!isset($_COOKIE['theme'])) {
     $isLight = $_COOKIE['theme'] === 'light' ? true : false;
 }
 
+//PER DEFINIRE IL TIPO DI LINGUA DEL COOKIE
+
+if (!isset($_COOKIE['language'])) {
+    setcookie('language', 'it', $cookie_expiration);
+    $language = "it";
+} else {
+    $language = $_COOKIE['language'] ;
+}
 
 
-?>
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,9 +41,9 @@ if (!isset($_COOKIE['theme'])) {
 </head>
 <body>
     
-<nav class="navbar navbar-expand-lg <?= $isLight ? 'bg-body-tertiary' : 'bg-body-dark text-white' ?>">
+<nav class="navbar navbar-expand-lg " <?= $isLight ? "" : 'data-bs-theme="dark"' ?>>
         <div class="container-fluid">
-            <a class="navbar-brand" href="<?= SITE_URL ?>">HOME</a>
+            <a class="navbar-brand" href="<?= SITE_URL ?>"><?= $labels[$language]['site_name'] ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -59,14 +55,16 @@ if (!isset($_COOKIE['theme'])) {
                         <a class="nav-link" aria-current="page" href="<?= SITE_URL . "/contacts.php" ?>">Contact</a>
                     </li>
                 </ul>
-                <a href="?changetheme" class="btn btn-primary">Change theme</a>
-                <!-- <form >
-                    <select >
-                       
+                <a href="<?= SITE_URL . '/change-theme.php' ?>" class=" me-5 <?= $isLight? "btn btn-dark" : "btn btn-warning"?>"><ion-icon name="moon-outline"></ion-icon></a>
+                <form action="<?= SITE_URL . '/change-language.php' ?>" method="GET">
+                    <select name="language" >
+                    <option value="it"<?= $language === 'it' ? ' selected' : '' ?>>IT</option>
+                        <option value="en"<?= $language === 'en' ? ' selected' : '' ?>>EN</option>
+                        <option value="fr"<?= $language === 'fr' ? ' selected' : '' ?>>FR</option>
                     </select>
-                    <button>change</button>
-                </form> -->
+                    <button class="btn btn-success">change</button>
+                </form>
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
