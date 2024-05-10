@@ -1,4 +1,41 @@
 body {
   background-color: white;
-  color: darkblue;
+  color: black;
+}
+
+.titolo {
+  text-align: center;
+  background-color: rgb(114, 104, 250);
+  color: white;
+  margin-block: 2rem;
+}
+
+.btn-dark {
+  background-color: #1a2871;
+  border: none;
+  padding-block: 0.5rem;
+}
+.btn-dark:hover {
+  background-color: #131e53;
+}
+
+.footer {
+  background-color: rgb(114, 104, 250);
+  padding-block: 2rem;
+  justify-content: center;
+}
+
+.footer div {
+  margin-inline: 2rem;
+}
+.footer div:hover {
+  cursor: pointer;
+}
+
+.copy-right {
+  text-align: center;
+  padding-block-start: 0.5rem;
+  padding-block-end: 0.8rem;
+  color: white;
+  background-color: #131e53;
 }

@@ -2,7 +2,7 @@
 
 include_once __DIR__ . "/constants.php";
 include_once __DIR__ . '/translations.php';
-include_once __DIR__ . "/../db.php";
+include_once __DIR__ . "/db.php";
 
 
 
@@ -43,7 +43,7 @@ if (!isset($_COOKIE['language'])) {
     
 <nav class="navbar navbar-expand-lg " <?= $isLight ? "" : 'data-bs-theme="dark"' ?>>
         <div class="container-fluid">
-            <a class="navbar-brand" href="<?= SITE_URL ?>"><?= $labels[$language]['site_name'] ?></a>
+            <a class="navbar-brand me-auto" href="<?= SITE_URL ?>"><?= $labels[$language]['site_name'] ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -55,14 +55,19 @@ if (!isset($_COOKIE['language'])) {
                         <a class="nav-link" aria-current="page" href="<?= SITE_URL . "/contacts.php" ?>">Contact</a>
                     </li>
                 </ul>
-                <a href="<?= SITE_URL . '/change-theme.php' ?>" class=" me-5 <?= $isLight? "btn btn-dark" : "btn btn-warning"?>"><ion-icon name="moon-outline"></ion-icon></a>
-                <form action="<?= SITE_URL . '/change-language.php' ?>" method="GET">
-                    <select name="language" >
+                <a href="<?= SITE_URL . '/change-theme.php' ?>" class=" me-5 rounded-circle btn <?= $isLight? "btn-dark" : "btn-light" ?>" >
+                <?php if ($isLight): ?>
+                    <ion-icon name="moon-outline"></ion-icon>
+                <?php else: ?>
+                    <ion-icon name="sunny-outline"></ion-icon>
+                <?php endif; ?></a>
+                <form id="form-language" action="<?= SITE_URL . '/change-language.php' ?>" method="GET">
+                    <select id="select-language" name="language" >
                     <option value="it"<?= $language === 'it' ? ' selected' : '' ?>>IT</option>
                         <option value="en"<?= $language === 'en' ? ' selected' : '' ?>>EN</option>
                         <option value="fr"<?= $language === 'fr' ? ' selected' : '' ?>>FR</option>
                     </select>
-                    <button class="btn btn-success">change</button>
+                    <!-- <button class="btn btn-success">change</button> -->
                 </form>
             </div>
         </div>

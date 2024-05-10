@@ -20,13 +20,26 @@ $stmt->execute();
 $resolt_db =$stmt->fetchAll();
 
 ?>
-    <h1><?= $labels[$language]['site_benvenuto'] ?></h1>
-    <div class="row">
-    <div class="col-12 col-md-7 mx-auto">
+
+
+<div class="row">
+<div class="col-12 col-md-4 mx-auto">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong class="me-2"><ion-icon name="checkmark-circle-outline"></ion-icon></strong><?= $labels[$language]['cambio_lingua'] ?>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>
+
+<div class="titolo">
+<h1 class="display-4"><?= $labels[$language]['site_benvenuto'] ?></h1>
+</div>
+    
+   
+    <div class="col-12 col-md-7 mx-auto my-4">
        <?php
        foreach($resolt_db as $date){?>
        <div>
-        <h1 class="display-6">
+        <h1 class="display-6 mb-4">
         <?=
            $date['titolo'];
            ?>

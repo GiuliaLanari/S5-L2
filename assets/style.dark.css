@@ -2,3 +2,19 @@ body {
   background-color: black;
   color: white;
 }
+
+.titolo {
+  text-align: center;
+  background-color: #59c489;
+  color: black;
+  margin-block: 2rem;
+}
+
+.btn-light {
+  background-color: #fcff33d8;
+  border: none;
+  padding-block: 0.5rem;
+}
+.btn-light:hover {
+  background-color: #fcff33;
+}
