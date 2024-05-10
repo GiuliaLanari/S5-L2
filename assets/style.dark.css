@@ -18,3 +18,24 @@ body {
 .btn-light:hover {
   background-color: #fcff33;
 }
+
+.footer {
+  background-color: #59c489;
+  padding-block: 2rem;
+  justify-content: center;
+}
+
+.footer div {
+  margin-inline: 2rem;
+}
+.footer div:hover {
+  cursor: pointer;
+}
+
+.copy-right {
+  text-align: center;
+  padding-block-start: 0.5rem;
+  padding-block-end: 0.8rem;
+  color: black;
+  background-color: #fcff33;
+}
